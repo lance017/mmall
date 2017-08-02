@@ -32,10 +32,17 @@ public class CategoryServiceImpl implements ICategoryService {
             return ServerResponse.createByErrorMessage("添加品类参数错误");
         }
 
+        int resultCount = categoryMapper.checkNameByParentId(categoryName, parentId);
+        if (resultCount > 0) {
+            return ServerResponse.createByErrorMessage("添加品类失败，该节点下已存在此名称的节点");
+        }
+
         Category category = new Category();
         category.setName(categoryName);
         category.setParentId(parentId);
         category.setStatus(true);
+
+
 
         int rowCount = categoryMapper.insert(category);
         if (rowCount > 0) {
