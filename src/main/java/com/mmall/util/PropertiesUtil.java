@@ -17,31 +17,31 @@ public class PropertiesUtil {
 
     private static Properties props;
 
+    // 静态代码块
     static {
         String fileName = "mmall.properties";
         props = new Properties();
         try {
             props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName),"UTF-8"));
         } catch (IOException e) {
-            logger.error("配置文件读取异常",e);
+            logger.error("配置文件异常", e);
         }
     }
 
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         String value = props.getProperty(key.trim());
-        if(StringUtils.isBlank(value)){
+        if (StringUtils.isBlank(value)) {
             return null;
         }
-        return value.trim();
+        return value;
     }
 
-    public static String getProperty(String key,String defaultValue){
-
+    public static String getProperty(String key, String defaultValue) {
         String value = props.getProperty(key.trim());
-        if(StringUtils.isBlank(value)){
+        if (StringUtils.isBlank(value)) {
             value = defaultValue;
         }
-        return value.trim();
+        return value;
     }
 
 
