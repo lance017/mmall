@@ -43,6 +43,7 @@ public class ProductManageController {
 
     /**
      * 保存产品
+     *
      * @param session
      * @param product
      * @return
@@ -58,7 +59,7 @@ public class ProductManageController {
             //是管理员
             //增加产品的业务
             return iProductService.saveOrUpdateProduct(product);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
@@ -66,6 +67,7 @@ public class ProductManageController {
 
     /**
      * 产品上下架
+     *
      * @param session
      * @param productId
      * @param status
@@ -82,7 +84,7 @@ public class ProductManageController {
             //是管理员
             //上下架功能
             return iProductService.setSaleStatus(productId, status);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
@@ -90,6 +92,7 @@ public class ProductManageController {
 
     /**
      * 获取产品详情
+     *
      * @param session
      * @param productId
      * @return
@@ -105,16 +108,16 @@ public class ProductManageController {
             //是管理员
             //获取产品详情
             return iProductService.manageProductDetail(productId);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
     }
 
 
-
     /**
      * 获取产品list
+     *
      * @param session
      * @param pageNum
      * @param pageSize
@@ -131,7 +134,7 @@ public class ProductManageController {
             //是管理员
             //获取产品list
             return iProductService.getPriductList(pageNum, pageSize);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
@@ -139,6 +142,7 @@ public class ProductManageController {
 
     /**
      * 产品搜索
+     *
      * @param session
      * @param productName
      * @param productId
@@ -157,7 +161,7 @@ public class ProductManageController {
             //是管理员
             //获取产品list
             return iProductService.searchProduct(productName, productId, pageNum, pageSize);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
@@ -165,6 +169,7 @@ public class ProductManageController {
 
     /**
      * 图片上传
+     *
      * @param file
      * @param request
      * @return
@@ -181,12 +186,12 @@ public class ProductManageController {
             //是管理员
             String path = request.getSession().getServletContext().getRealPath("upload");
             String targetFileName = iFileService.upload(file, path);
-            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
+            String url = PropertiesUtil.getProperty("qiniu.cdns") + targetFileName;
             Map fileMap = Maps.newHashMap();
             fileMap.put("uri", targetFileName);
             fileMap.put("url", url);
             return ServerResponse.createBySuccess(fileMap);
-        }else {
+        } else {
             return ServerResponse.createByErrorMessage("无权限操作，需要管理员权限");
         }
 
@@ -195,6 +200,7 @@ public class ProductManageController {
 
     /**
      * 富文本图片上传
+     *
      * @param session
      * @param file
      * @param request
@@ -224,13 +230,13 @@ public class ProductManageController {
             }
 
 
-            String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
+            String url = PropertiesUtil.getProperty("qiniu.cdns") + targetFileName;
             resultMap.put("success", true);
             resultMap.put("mag", "上传成功");
             resultMap.put("file_path", url);
-            response.addHeader("Access_Control-Allow-Headers","X-File-Name");
+            response.addHeader("Access_Control-Allow-Headers", "X-File-Name");
             return resultMap;
-        }else {
+        } else {
             resultMap.put("success", false);
             resultMap.put("mag", "无权限操作");
 

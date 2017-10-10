@@ -9,7 +9,7 @@
       <arg column="subtitle" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="main_image" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sub_images" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="detail" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fdetail" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
       <arg column="stock" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />

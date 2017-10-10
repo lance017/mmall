@@ -120,7 +120,7 @@ public class ProductServiceImpl implements IProductService {
 
 
         //imageHost
-        productDetailsVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.lance017.xin/"));
+        productDetailsVo.setImageHost(PropertiesUtil.getProperty("qiniu.cdns", ""));
 
         //parentCategoryId
 
@@ -175,7 +175,7 @@ public class ProductServiceImpl implements IProductService {
 
 
         //imageHost
-        productListVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.lance017.xin/"));
+        productListVo.setImageHost(PropertiesUtil.getProperty("qiniu.cdns", ""));
 
         return productListVo;
     }
